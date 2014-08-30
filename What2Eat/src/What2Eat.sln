@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "What2EatWeb", "What2EatWeb\What2EatWeb.csproj", "{933ABE1E-43D2-4E28-B2F6-94C7CFD6A034}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "What2EatService", "What2EatService\What2EatService.csproj", "{30FE17FB-8823-4D45-A76B-03C7DB773A07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "What2EatCore", "What2EatCore\What2EatCore.csproj", "{7750B5CB-1E92-4E1A-98FD-A01B289D3D44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{933ABE1E-43D2-4E28-B2F6-94C7CFD6A034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{933ABE1E-43D2-4E28-B2F6-94C7CFD6A034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{933ABE1E-43D2-4E28-B2F6-94C7CFD6A034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{933ABE1E-43D2-4E28-B2F6-94C7CFD6A034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FE17FB-8823-4D45-A76B-03C7DB773A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FE17FB-8823-4D45-A76B-03C7DB773A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FE17FB-8823-4D45-A76B-03C7DB773A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FE17FB-8823-4D45-A76B-03C7DB773A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7750B5CB-1E92-4E1A-98FD-A01B289D3D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7750B5CB-1E92-4E1A-98FD-A01B289D3D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7750B5CB-1E92-4E1A-98FD-A01B289D3D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7750B5CB-1E92-4E1A-98FD-A01B289D3D44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
