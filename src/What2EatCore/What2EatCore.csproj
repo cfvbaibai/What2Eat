@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,21 +50,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dish.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DishDetail.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DishType.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Meal.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealDetail.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealType.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="What2Eat.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>What2Eat.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="What2Eat.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>What2Eat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="What2Eat.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>What2Eat.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\tbl_dish.sql" />
-    <Content Include="DB\tbl_dish_type.sql" />
-    <Content Include="DB\tbl_meal_type.sql" />
-    <Content Include="DB\tbl_meal.sql" />
-    <Content Include="DB\tbl_user.sql">
+    <Content Include="DB\Procedures\AddMeal_1.sql" />
+    <Content Include="DB\Procedures\AddDish_1.sql" />
+    <Content Include="DB\Tables\Dish.sql" />
+    <Content Include="DB\Tables\DishType.sql" />
+    <Content Include="DB\Tables\MealType.sql" />
+    <Content Include="DB\Tables\Meal.sql" />
+    <Content Include="DB\Tables\User.sql">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="DB\Views\MealView_1.sql">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="DB\Views\DishView_1.sql">
       <SubType>Component</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="What2Eat.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>What2Eat.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="What2Eat.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>What2Eat.edmx</DependentUpon>
+      <LastGenOutput>What2Eat.Context.cs</LastGenOutput>
+    </None>
+    <None Include="What2Eat.edmx.diagram">
+      <DependentUpon>What2Eat.edmx</DependentUpon>
+    </None>
+    <None Include="What2Eat.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>What2Eat.edmx</DependentUpon>
+      <LastGenOutput>What2Eat.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

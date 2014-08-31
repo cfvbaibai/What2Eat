@@ -12,11 +12,13 @@ namespace Cfvbaibai.What2Eat.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Meal
     {
+        public int ID { get; set; }
         public string UserId { get; set; }
-        public string NickName { get; set; }
-        public string Password { get; set; }
+        public byte MealTypeId { get; set; }
+        public string DishName { get; set; }
+        public System.DateTime MealDate { get; set; }
         public System.DateTime Updated { get; set; }
     }
 }

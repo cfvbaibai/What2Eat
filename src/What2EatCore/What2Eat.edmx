@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Cfvbaibai.What2Eat.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DishType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="Category1" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Category2" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Category3" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Meal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="MealDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MealTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="DishName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MealType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Updated" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“What2Eat.dbo.DishView_1”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="DishView_1">
+          <Key>
+            <PropertyRef Name="Name" />
+            
+            
+            
+            
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="Category1" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Category2" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Category3" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“What2Eat.dbo.MealView_1”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="MealView_1">
+          <Key>
+            <PropertyRef Name="ID" />
+            
+            
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MealTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="MealTypeName" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="DishName" Type="nvarchar" MaxLength="64" />
+          <Property Name="DishTypeId" Type="smallint" />
+          <Property Name="Category1" Type="nvarchar" MaxLength="8" />
+          <Property Name="Category2" Type="nvarchar" MaxLength="8" />
+          <Property Name="Category3" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <Function Name="AddDish_1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Type" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="AddMeal_1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="MealDate" Type="datetime2" Mode="In" />
+          <Parameter Name="MealTypeId" Type="tinyint" Mode="In" />
+          <Parameter Name="DishName" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="CfvbaibaiWhat2EatModelStoreContainer">
+          <EntitySet Name="Dish" EntityType="Self.Dish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DishType" EntityType="Self.DishType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meal" EntityType="Self.Meal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MealType" EntityType="Self.MealType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DishView_1" EntityType="Self.DishView_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DishView_1].[Name] AS [Name], 
+    [DishView_1].[Type] AS [Type], 
+    [DishView_1].[Category1] AS [Category1], 
+    [DishView_1].[Category2] AS [Category2], 
+    [DishView_1].[Category3] AS [Category3]
+    FROM [dbo].[DishView_1] AS [DishView_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MealView_1" EntityType="Self.MealView_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MealView_1].[ID] AS [ID], 
+    [MealView_1].[MealTypeId] AS [MealTypeId], 
+    [MealView_1].[MealTypeName] AS [MealTypeName], 
+    [MealView_1].[DishName] AS [DishName], 
+    [MealView_1].[DishTypeId] AS [DishTypeId], 
+    [MealView_1].[Category1] AS [Category1], 
+    [MealView_1].[Category2] AS [Category2], 
+    [MealView_1].[Category3] AS [Category3]
+    FROM [dbo].[MealView_1] AS [MealView_1]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Cfvbaibai.What2Eat.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="DishType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Category1" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category2" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category3" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Meal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MealTypeId" Type="Byte" Nullable="false" />
+          <Property Name="DishName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="MealDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="MealType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="DishDetail">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Category1" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category2" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category3" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="What2EatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dishes" EntityType="Self.Dish" />
+          <EntitySet Name="DishTypes" EntityType="Self.DishType" />
+          <EntitySet Name="Meals" EntityType="Self.Meal" />
+          <EntitySet Name="MealTypes" EntityType="Self.MealType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="DishDetails" EntityType="Cfvbaibai.What2Eat.Model.DishDetail" />
+          <FunctionImport Name="AddDish_1">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <EntitySet Name="MealDetails" EntityType="Cfvbaibai.What2Eat.Model.MealDetail" />
+          <FunctionImport Name="AddMeal_1">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="MealDate" Mode="In" Type="DateTime" />
+            <Parameter Name="MealTypeId" Mode="In" Type="Byte" />
+            <Parameter Name="DishName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="MealDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MealTypeId" Type="Byte" Nullable="false" />
+          <Property Name="MealTypeName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="DishName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DishTypeId" Type="Int16" />
+          <Property Name="Category1" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Category2" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Category3" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CfvbaibaiWhat2EatModelStoreContainer" CdmEntityContainer="What2EatEntities">
+          <EntitySetMapping Name="Dishes">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.Dish">
+              <MappingFragment StoreEntitySet="Dish">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DishTypes">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.DishType">
+              <MappingFragment StoreEntitySet="DishType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Category1" ColumnName="Category1" />
+                <ScalarProperty Name="Category2" ColumnName="Category2" />
+                <ScalarProperty Name="Category3" ColumnName="Category3" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meals">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.Meal">
+              <MappingFragment StoreEntitySet="Meal">
+                <ScalarProperty Name="MealDate" ColumnName="MealDate" />
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MealTypeId" ColumnName="MealTypeId" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MealTypes">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.MealType">
+              <MappingFragment StoreEntitySet="MealType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddDish_1" FunctionName="Cfvbaibai.What2Eat.Model.Store.AddDish_1" />
+          <EntitySetMapping Name="DishDetails">
+            <EntityTypeMapping TypeName="IsTypeOf(Cfvbaibai.What2Eat.Model.DishDetail)">
+              <MappingFragment StoreEntitySet="DishView_1">
+                <ScalarProperty Name="Category3" ColumnName="Category3" />
+                <ScalarProperty Name="Category2" ColumnName="Category2" />
+                <ScalarProperty Name="Category1" ColumnName="Category1" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MealDetails">
+            <EntityTypeMapping TypeName="Cfvbaibai.What2Eat.Model.MealDetail">
+              <MappingFragment StoreEntitySet="MealView_1">
+                <ScalarProperty Name="Category3" ColumnName="Category3" />
+                <ScalarProperty Name="Category2" ColumnName="Category2" />
+                <ScalarProperty Name="Category1" ColumnName="Category1" />
+                <ScalarProperty Name="DishTypeId" ColumnName="DishTypeId" />
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="MealTypeName" ColumnName="MealTypeName" />
+                <ScalarProperty Name="MealTypeId" ColumnName="MealTypeId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddMeal_1" FunctionName="Cfvbaibai.What2Eat.Model.Store.AddMeal_1" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

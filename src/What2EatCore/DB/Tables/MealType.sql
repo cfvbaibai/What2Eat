@@ -1,0 +1,17 @@
+﻿USE What2Eat
+
+DROP TABLE MealType
+CREATE TABLE MealType (
+    ID              TINYINT             NOT NULL,
+    Name            NVARCHAR(32)        NOT NULL PRIMARY KEY,
+    Updated         DATETIME2(7)        NOT NULL
+) ON [PRIMARY]
+
+GO
+
+INSERT INTO MealType VALUES (1, '早餐', GETUTCDATE())
+INSERT INTO MealType VALUES (2, '早午餐', GETUTCDATE())
+INSERT INTO MealType VALUES (3, '午餐', GETUTCDATE())
+INSERT INTO MealType VALUES (4, '下午茶', GETUTCDATE())
+INSERT INTO MealType VALUES (5, '晚餐', GETUTCDATE())
+INSERT INTO MealType VALUES (6, '夜宵', GETUTCDATE())

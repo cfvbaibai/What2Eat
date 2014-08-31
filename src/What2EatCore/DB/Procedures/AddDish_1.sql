@@ -1,0 +1,21 @@
+﻿USE What2Eat
+
+DROP PROCEDURE AddDish_1
+GO
+
+CREATE PROCEDURE AddDish_1 (
+    @Name NVARCHAR(64),
+    @Type SMALLINT
+) AS
+BEGIN
+    BEGIN TRANSACTION
+
+    UPDATE Dish SET [Type] = @Type WHERE Name = @Name
+    IF @@ROWCOUNT = 0
+    BEGIN
+        INSERT INTO Dish VALUES (@Name, @Type, GETUTCDATE())
+    END
+
+    COMMIT TRANSACTION
+END
+GO
